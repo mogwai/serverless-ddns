@@ -1,4 +1,5 @@
-const route53 = new require('aws-sdk').Route53();
+const Route53Service = require('aws-sdk').Route53;
+const route53 = new Route53Service()
 
 function respond(cb, statusCode, body) {
   cb({
@@ -8,7 +9,7 @@ function respond(cb, statusCode, body) {
 }
 
 async function handler(event, context, cb) {
-  const { ip, domain, secret } = JSON.parse(event.body);
+  const { ip, domain, secret, TTL = 300 } = JSON.parse(event.body);
 
   if (!ip || !domain) return respond(cb, 400);
 
@@ -27,7 +28,7 @@ async function handler(event, context, cb) {
                 Value: ip
               }
             ],
-            TTL: 300,
+            TTL,
             Type: 'A'
           }
         }

@@ -11,10 +11,12 @@ node_modules/
 # NYC
 .nyc_output/
 
-# DEvelopment environment variables
-.env
+# Development environment variables
 ormconfig.env
 
+# Environment Variables
+env.yml
 
 # MAC
 **/.DS_Store
+

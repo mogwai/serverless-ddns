@@ -15,8 +15,9 @@ provider:
   memorySize: 128
 
 functions:
-  resetPasswordChange:
+  setRecord:
     handler: index.handler
+    environment: ${file(env.yml)}
     events:
       - http:
           path: /
