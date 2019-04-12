@@ -1,0 +1,20 @@
+# package directories
+node_modules/
+.cache/
+
+# Serverless directories
+.serverless/
+.build/
+.webpack/
+.dynamodb/
+
+# NYC
+.nyc_output/
+
+# DEvelopment environment variables
+.env
+ormconfig.env
+
+
+# MAC
+**/.DS_Store
