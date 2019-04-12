@@ -12,7 +12,8 @@ async function handler(event, context, cb) {
 
   if (!ip || !domain) return respond(cb, 400);
 
-  if (secret !== process.env.SECRET) return respond(cb, 403);
+  if (secret === undefined || secret !== process.env.SECRET)
+    return respond(cb, 403);
 
   const params = {
     ChangeBatch: {
@@ -33,7 +34,7 @@ async function handler(event, context, cb) {
       ],
       Comment: 'Web server for example.com'
     },
-    HostedZoneId: process.env.HostedZoneId,
+    HostedZoneId: process.env.HostedZoneId
   };
 
   const result = await route53.changeResourceRecordSets(params).promise();
