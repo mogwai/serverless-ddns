@@ -1,5 +1,5 @@
 const Route53Service = require('aws-sdk').Route53;
-const route53 = new Route53Service()
+const route53 = new Route53Service();
 
 function respond(cb, statusCode, body) {
   cb({
@@ -38,9 +38,12 @@ async function handler(event, context, cb) {
     HostedZoneId: process.env.HostedZoneId
   };
 
-  const result = await route53.changeResourceRecordSets(params).promise();
-
-  respond(cb, 200, result);
+  try {
+    const result = await route53.changeResourceRecordSets(params).promise();
+    respond(cb, 200, result);
+  } catch (e) {
+    respond(cb, 500, e.message);
+  }
 }
 
 module.exports.handler = handler;

@@ -19,6 +19,11 @@ functions:
   setRecord:
     handler: index.handler
     environment: ${file(env.yml)}
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - route53:ChangeResourceRecordSets
+        Resource: arn:aws:route53:::hostedzone/*
     events:
       - http:
           path: /
