@@ -12,6 +12,7 @@ provider:
   name: aws
   runtime: nodejs8.10
   region: eu-west-2
+  stage: prod
   memorySize: 128
 
 functions:
