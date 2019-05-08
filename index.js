@@ -2,7 +2,7 @@ const Route53Service = require('aws-sdk').Route53;
 const route53 = new Route53Service();
 
 function respond(cb, statusCode, body) {
-  cb({
+  cb(null, {
     statusCode,
     body: body && JSON.stringify(body)
   });
